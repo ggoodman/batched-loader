@@ -1,6 +1,6 @@
 {
   "name": "batched-loader",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "directories": {
     "test": "test"
@@ -14,7 +14,11 @@
     "test": "lab -cv"
   },
   "keywords": [
-    "batch", "batched", "loader", "window", "load"
+    "batch",
+    "batched",
+    "loader",
+    "window",
+    "load"
   ],
   "author": "Geoffrey Goodman",
   "license": "BSD-3-Clause",
