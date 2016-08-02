@@ -1,0 +1,22 @@
+{
+  "name": "batched-loader",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "code": "^3.0.2",
+    "lab": "^10.9.0"
+  },
+  "scripts": {
+    "test": "lab -cv"
+  },
+  "keywords": [
+    "batch", "batched", "loader", "window", "load"
+  ],
+  "author": "Geoffrey Goodman",
+  "license": "BSD-3-Clause",
+  "description": "Create a loader function that transparently batches requests"
+}
