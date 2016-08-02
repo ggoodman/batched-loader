@@ -22,5 +22,13 @@
   ],
   "author": "Geoffrey Goodman",
   "license": "BSD-3-Clause",
-  "description": "Create a loader function that transparently batches requests"
+  "description": "Create a loader function that transparently batches requests",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ggoodman/batched-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ggoodman/batched-loader/issues"
+  },
+  "homepage": "https://github.com/ggoodman/batched-loader#readme"
 }
