@@ -59,7 +59,7 @@ Creates a batched loader function where:
 
 - `loadKeys(keys, notifier)` - the function that will issue a batch where:
     - `keys` - an array of keys that should be loaded.
-    - `notifier` - a [`Notifier`](#Notifier) instance to be used to signal results, errors and the completion of the batch.
+    - `notifier` - a [`Notifier`](#notifier) instance to be used to signal results, errors and the completion of the batch.
 - `options` - an object containing:
     - `generateKey(request)` - a function that should convert the `request` item into a key that the `issueBatch` function can handle.
     - `timeoutMs` - the number of milliseconds after which a batch will time out (defaults to `5000` ms).
