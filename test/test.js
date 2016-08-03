@@ -257,6 +257,29 @@ describe('the batched loader', { parallel: true }, () => {
         });
     });
 
+    it('will support run-time this binding', done => {
+        const context = {
+            key: 'value',
+        };
+        const issueBatch = function (keys, notifier) {
+            expect(keys).to.be.an.array().and.to.have.length(1);
+            expect(keys[0]).to.equal('key');
+            expect(this).to.shallow.equal(context);
+            expect(notifier).to.be.an.instanceOf(Batcher.Notifier);
+
+            keys.forEach(key => notifier.result(key, this[key]));
+            notifier.complete();
+        };
+        const loader = Batcher.createLoader(issueBatch, { context });
+
+        loader.call(context, 'key', (error, value) => {
+            expect(error).to.not.exist();
+            expect(value).to.equal(context.key);
+
+            done();
+        });
+    });
+
     it('will load a single batched request if the same key is requested multiple times during the request window', done => {
         let batchesIssued = 0;
         let callbacksFired = 0;

@@ -61,6 +61,7 @@ Creates a batched loader function where:
     - `keys` - an array of keys that should be loaded.
     - `notifier` - a [`Notifier`](#notifier) instance to be used to signal results, errors and the completion of the batch.
 - `options` - an object containing:
+    - `context` - an optional context object that will be set as the `loadKeys` function's receiver (`this` object).
     - `generateKey(request)` - a function that should convert the `request` item into a key that the `issueBatch` function can handle.
     - `timeoutMs` - the number of milliseconds after which a batch will time out (defaults to `5000` ms).
     - `windowMs` - the number of milliseconds that determine the window for inclusion in the current batch (defaults to `0` which means in the same tick).
