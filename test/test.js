@@ -566,4 +566,58 @@ describe('the batched loader', { parallel: true }, () => {
             done();
         });
     });
+
+    it('will wait for deferred notifications', done => {
+        const issueBatch = (keys, notifier) => {
+            expect(keys).to.be.an.array().and.to.have.length(1);
+            expect(keys[0]).to.equal('key');
+            expect(notifier).to.be.an.instanceOf(Batcher.Notifier);
+
+            keys.forEach((key, i) => {
+                notifier.defer(key, cb => {
+                    setTimeout(() => {
+                        cb(null, key);
+                    }, 100 * i);
+                });
+            });
+
+            notifier.complete();
+        };
+        const loader = Batcher.createLoader(issueBatch);
+
+        loader('key', (error, value) => {
+            expect(error).to.not.exist();
+            expect(value).to.equal('key');
+
+            done();
+        });
+    });
+
+    it('will ignore deferred notifications if they have been synchronously completed', done => {
+        const issueBatch = (keys, notifier) => {
+            expect(keys).to.be.an.array().and.to.have.length(1);
+            expect(keys[0]).to.equal('key');
+            expect(notifier).to.be.an.instanceOf(Batcher.Notifier);
+
+            keys.forEach((key, i) => {
+                notifier.result(key, key.toUpperCase());
+                
+                notifier.defer(key, cb => {
+                    setTimeout(() => {
+                        cb(null, key);
+                    }, 100 * i);
+                });
+            });
+
+            notifier.complete();
+        };
+        const loader = Batcher.createLoader(issueBatch);
+
+        loader('key', (error, value) => {
+            expect(error).to.not.exist();
+            expect(value).to.equal('KEY');
+
+            done();
+        });
+    });
 });
