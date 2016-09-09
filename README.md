@@ -2,6 +2,8 @@
 
 Create a loader function that transparently batches loads either by event loop tick or by a configurable window.
 
+> I have an array of Blog objects that I just got from Mongo (that doesn’t support joins) and I want to join the relevant User objects before responding. However, I don’t want to one request for each Blog post because I know some posts share users and I know that Mongo can return multiple users in a single query more efficiently.
+
 ## Rationale
 
 This tool is designed to help reduce costly round-trips for two scenarios:
